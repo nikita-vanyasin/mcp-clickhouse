@@ -60,9 +60,24 @@ def list_tables(database: str, like: str = None):
         create_table_query = f"SHOW CREATE TABLE {database}.`{table}`"
         create_table_result = client.command(create_table_query)
 
+        # Get table comment
+        table_comment_query = f"SELECT comment FROM system.tables WHERE database = '{database}' AND name = '{table}'"
+        table_comment_result = client.query(table_comment_query)
+        table_comment = table_comment_result.result_rows[0][0] if table_comment_result.result_rows else None
+
+        # Get column comments
+        column_comments_query = f"SELECT name, comment FROM system.columns WHERE database = '{database}' AND table = '{table}'"
+        column_comments_result = client.query(column_comments_query)
+        column_comments = {row[0]: row[1] for row in column_comments_result.result_rows}
+
+        # Add comments to columns
+        for column in columns:
+            column['comment'] = column_comments.get(column['name'])
+
         return {
             "database": database,
             "name": table,
+            "comment": table_comment,
             "columns": columns,
             "create_table_query": create_table_result,
         }
