@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/mcp-clickhouse
+      url: "https://pypi.org/p/mcp-clickhouse"
     permissions:
       id-token: write
     steps:
@@ -15,6 +15,4 @@ jobs:
       - uses: astral-sh/setup-uv@v5
       - run: uv python install
       - run: uv build
-
-    - name: Publish package distributions to PyPI
-      uses: pypa/gh-action-pypi-publish@release/v1
+      - uses: pypa/gh-action-pypi-publish@release/v1
