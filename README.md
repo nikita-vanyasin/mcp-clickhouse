@@ -21,6 +21,16 @@ An MCP server for ClickHouse.
   - List all tables in a database.
   - Input: `database` (string): The name of the database.
 
+## Installation
+
+It is available as [PyPi package](https://pypi.org/project/mcp-clickhouse/), use pip or pipx to install:
+```
+pipx install mcp-clickhouse
+# or
+pip install mcp-clickhouse 
+```
+
+
 ## Configuration
 
 1. Open the Claude Desktop configuration file located at:
