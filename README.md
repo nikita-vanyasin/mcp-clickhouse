@@ -15,6 +15,12 @@ An MCP server for ClickHouse.
   * Input: `sql` (string): The SQL query to execute.
   * All ClickHouse queries are run with `readonly = 1` to ensure they are safe.
 
+* `run_semantic_search`
+  * Execute semantic search queries on your ClickHouse cluster.
+  * Input: `terms` (string): Will return documents that have closest semantic meaning to the search terms.
+  * Input: `sqlFilters` (string): Optional, extra filters to apply to the search results (e.g. `origin = 'xyz' AND updateAt > '2023-01-01'`).
+  * Input: `limit` (int): Limit the number of results returned. Default is 10.
+
 * `list_databases`
   * List all databases on your ClickHouse cluster.
 
